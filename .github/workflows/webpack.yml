@@ -24,8 +24,11 @@ jobs:
         npm run build
         
     - name: Deploy Gh Pages
+      if: success()
       uses: crazy-max/ghaction-github-pages@v2.5.0
       with:
         jekyll: false
         build_dir: dist
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
