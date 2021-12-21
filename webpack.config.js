@@ -4,9 +4,9 @@ const { resolve } = require("path");
 /**
  * @type {import("webpack").Configuration}
  */
-module.exports = {
+module.exports = (env) => ({
     entry: resolve(__dirname, "./src/index.ts"),
-    devtool: "eval-source-map",
+    devtool: env.production ? "source-map" : "eval",
     output: {
         clean: true,
         asyncChunks: true,
@@ -35,6 +35,7 @@ module.exports = {
             template: resolve(__dirname, "./src/index.html"),
             favicon: false,
             title: "Solar System",
+            minify: "auto",
         }),
     ],
-};
+});
